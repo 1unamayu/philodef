@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 10:27:22 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 10:50:52 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 11:04:05 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,6 @@ typedef struct s_persons
 	t_game_data			*data;
 }	t_person;
 
+
+int	ft_report_error(int error_type);
 #endif

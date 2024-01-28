@@ -6,7 +6,7 @@
 #    By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/28 10:14:23 by xamayuel          #+#    #+#              #
-#    Updated: 2024/01/28 10:51:22 by xamayuel         ###   ########.fr        #
+#    Updated: 2024/01/28 10:55:04 by xamayuel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,13 +28,17 @@ DARK_BLUE		=   \033[38;5;57m
 # SOURCE FILES
 SRC =	$(SRC_DIR)/philo.c \
 		$(SRC_DIR)/ft_atoi.c \
-		$(SRC_DIR)/description.c \
+		$(SRC_DIR)/showerror.c \
+		
+
+SRC2 =	$(SRC_DIR)/philo.c \
+		$(SRC_DIR)/ft_atoi.c \
+		$(SRC_DIR)/showerror.c \
 		$(SRC_DIR)/game.c \
 		$(SRC_DIR)/checks.c \
 		$(SRC_DIR)/init.c \
 		$(SRC_DIR)/report.c \
 		$(SRC_DIR)/time.c
-
 # OBJECTS
 OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 

@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 10:52:04 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 10:52:22 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 10:59:06 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ int	main(int argn, char *argv[])
 	//t_npc	*npcs;
 
 	if (argn < 5 || argn > 6)
-		return (report_error(ERR_N_ARGS));
-	if (check_all_numeric(argn, argv) == FALSE)
-		return (report_error(ERR_NO_NUMBERS));
-	if (check_all_positive(argn, argv) == FALSE)
-		return (report_error(ERR_ZERO));
+		return (ft_report_error(ERR_N_ARGS));
+	//if (check_all_numeric(argn, argv) == FALSE)
+	//	return (report_error(ERR_NO_NUMBERS));
+	//if (check_all_positive(argn, argv) == FALSE)
+	//	return (report_error(ERR_ZERO));
 	//init_game(&npcs, argn, argv);
 	//start_game(npcs);
 	return (0);
