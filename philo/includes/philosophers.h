@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 10:27:22 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 10:48:46 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 10:50:52 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_game_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	screen;
 	pthread_mutex_t	death;
-	pthread_mutex_t	endgame;
+	pthread_mutex_t	theend;
 	/** Vbles*/
 	unsigned int	num_persons;		/**< Number of Philosophers. */
 	unsigned int	time_to_die;		/**< Time to die [arg(1)]. */
