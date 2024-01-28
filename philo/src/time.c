@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 16:27:01 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/15 20:55:09 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 21:48:22 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * 
  * @return Returns the current time in milliseconds.
  */
-long long	current_time(void)
+long long	ft_current_time(void)
 {
 	struct timeval	time;
 

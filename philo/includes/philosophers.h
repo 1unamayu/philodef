@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 21:20:46 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 21:45:02 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 23:56:37 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@
 # define FALSE 0
 # define TRUE 1
 
+# define FORK 0
+# define EATING 1
+
 typedef struct s_env
 {
 	int 	time_die;
@@ -42,10 +45,10 @@ typedef struct s_env
 	int 	max_meals;
 	long long	start_timestamp;
 	int 	death;
-	int 	fat;
+	int 	n_meals;
 	pthread_mutex_t message;
-	pthread_mutex_t genesis;
-	pthread_mutex_t changes;
+	pthread_mutex_t control;
+	pthread_mutex_t death_in_table;
 } t_env;
 
 typedef struct s_person
@@ -63,15 +66,18 @@ typedef struct s_person
 typedef struct s_game
 {
 	int total_persons;
-	pthread_t tortuga;
+	pthread_t doctor;
 	pthread_mutex_t *forks;
 	t_person	*persons;
 	t_env env;
 }t_game;
 
 int	check_all_numeric(int argn, char *argv[]);
-int	report_error(int type);
+void	report_error(int type);
 void	show_error_arguments(void);
 int	ft_error(char *string);
 int	ft_atoi(const char *str);
+long long	ft_current_time(void);
+void ft_free_game(t_game *game);
+void ft_start_game(t_game *game);
 #endif

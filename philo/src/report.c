@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 14:39:17 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 21:35:48 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 21:53:37 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
  * 
  * @return Returns -1 to indicate that an error has occurred.
  */
-int	report_error(int type)
+void	report_error(int type)
 {
 	ft_error(RED);
 	if (type == ERR_N_ARGS)
@@ -40,7 +40,7 @@ int	report_error(int type)
 	ft_error(WHITE);
 	if (type == ERR_N_ARGS || type == ERR_NO_NUMBERS || type == ERR_ZERO)
 		show_error_arguments();
-	return (-1);
+	exit(0);
 }
 
 /**
