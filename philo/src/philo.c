@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 10:52:04 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 17:15:07 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 19:03:01 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ t_person *ft_persons_create(t_game_data *data)
 
 	cont = 0;
 	
+	data->screen = malloc(sizeof(pthread_mutex_t));
 	persons = malloc(sizeof(t_person)*data->num_persons);
+	pthread_mutex_init(data->screen,NULL);
 	while (cont < data->num_persons)
 	{
 		//printf("inicializando persona %d \n",cont+1);
@@ -76,13 +78,40 @@ void ft_delete_game(t_game_data *data)
 	free(data->forks);
 	free(data->thread_person);
 }
+
+void ft_take_forks(t_person *person)
+{
+	//printf("izq: %d\n", person->lfork);
+	//pthread_mutex_lock(&person->data->forks[person->lfork]);
+	ft_report_screen(0,person);
+	//printf("dcha: %d\n", person->rfork);
+	//pthread_mutex_lock(&person->data->forks[person->rfork]);
+	ft_report_screen(0,person);
+}
+
+void ft_eat(t_person *person)
+{
+	
+}
 void *ft_vida(void *arg)
 {
 	t_person *person;
 
 	person = arg;
-	
-	printf("En vida %d\n",person->position);
+	//printf("Time to eat %d \n", person->data->time_to_die);
+	person->next_meal_timestamp = ft_current_time()+person->data->time_to_die;
+	//printf("Time next eat %lld \n", person->next_meal_timestamp);
+	//printf("En vida %d\n",person->position);
+
+	while (42)
+	{
+		ft_take_forks(person);
+		
+		printf("Eat\n");
+		printf("eating\n");
+		printf("sleeping\n");
+		printf("thinking\n");
+	}
 	return NULL;
 }
 
@@ -98,6 +127,8 @@ void ft_init_game_data(t_game_data *data)
 		pthread_mutex_init(data->forks, NULL);
 		cont++;
 	}
+	data->screen=malloc(sizeof(pthread_mutex_t));
+	pthread_mutex_init(data->screen,NULL);
 	//printf("Jugadores %d\n",data->num_persons);
 
 	

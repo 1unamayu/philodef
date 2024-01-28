@@ -6,7 +6,7 @@
 #    By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/28 10:14:23 by xamayuel          #+#    #+#              #
-#    Updated: 2024/01/28 16:19:11 by xamayuel         ###   ########.fr        #
+#    Updated: 2024/01/28 18:38:33 by xamayuel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC =	$(SRC_DIR)/philo.c \
 		$(SRC_DIR)/ft_atoi.c \
 		$(SRC_DIR)/showerror.c \
 		$(SRC_DIR)/time.c \
+		$(SRC_DIR)/report.c \
 		
 
 SRC2 =	$(SRC_DIR)/philo.c \
@@ -55,7 +56,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ) 
 		$(CC) $(OBJ) $(HEAD) $(CFLAGS) $(LFLAGS) -o $(NAME)
-		clear
+		
 		@echo "$(PINK)╔═══════════════════════════════════════╗"
 		@echo "$(PINK)║ ${RESET}🙈🙉🙊 ${BLUE} PHILOSOPHER COMPLETE ${RESET}🙈🙉🙊   $(PINK)║"
 		@echo "$(PINK)╚═══════════════════════════════════════╝ $(RESET)"

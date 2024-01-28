@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 10:27:22 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 16:52:02 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 18:52:56 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ typedef struct s_game_data
 {
 	pthread_t		*thread_person;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	screen;
-	pthread_mutex_t	death;
-	pthread_mutex_t	theend;
+	pthread_mutex_t	*screen;
+	pthread_mutex_t	*death;
+	pthread_mutex_t	*theend;
 	/** Vbles*/
 	unsigned int	num_persons;		/**< Number of Philosophers. */
 	unsigned int	time_to_die;		/**< Time to die [arg(1)]. */
@@ -53,12 +53,14 @@ typedef struct s_game_data
 
 typedef struct s_persons
 {
+	/** Mutex eating*/
+	pthread_mutex_t		*eating;
 	/** Vbles*/
 	unsigned int		position;
 	unsigned int		lfork;
 	unsigned int		rfork;
 	unsigned int		num_meals;
-	long long int		last_meal_timestamp;
+	long long int		next_meal_timestamp;
 	long long int		start_timestamp;
 	unsigned int 		is_death;
 	/** Game data */
@@ -70,4 +72,5 @@ int	ft_report_error(int error_type);
 int	check_all_numeric(int argn, char *argv[]);
 int	ft_atoi(const char *str);
 long long	ft_current_time(void);
+void ft_report_screen(int print_type, t_person *person);
 #endif
