@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 10:52:04 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 11:37:51 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 11:59:31 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,23 @@ int ft_read_game_data(int argn, char **argv, t_game_data *data)
 	if (argn == 6)
 		data->meals_max = ft_atoi(argv[5]);
 	data->endgame = FALSE;
+	return (0);
+}
+
+t_person *ft_persons_create(t_game_data *data)
+{
+	t_person *persons;
+	int cont;
+
+	cont = 0;
+	persons = malloc(sizeof(t_person)*10);
+	return (persons);
 }
 
 int	main(int argn, char *argv[])
 {
 	t_game_data game_data;
+	t_person	*person;
 
 	if (argn < 5 || argn > 6)
 		return (ft_report_error(ERR_N_ARGS));
@@ -52,10 +64,12 @@ int	main(int argn, char *argv[])
 	printf("%d\n",game_data.num_persons);
 
 	ft_read_game_data(argn, argv, &game_data);
-	printf("%d\n",game_data.num_persons);
-	printf("%d\n",game_data.meals_max);
+	
+	person = ft_persons_create(&game_data);
+
 	//init_game(&npcs, argn, argv);
 	//start_game(npcs);
 
+	
 	return (0);
 }
