@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 11:03:02 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 11:03:56 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 11:06:44 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ static void	show_error_arguments(void)
 }
 
 
-
-
-
 int	ft_report_error(int error_type)
 {
 	ft_error(RED);
@@ -60,4 +57,28 @@ int	ft_report_error(int error_type)
 	if (error_type == ERR_N_ARGS || error_type == ERR_NO_NUMBERS || error_type == ERR_ZERO)
 		show_error_arguments();
 	return (-1);
+}
+
+int	check_all_numeric(int argn, char *argv[])
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	j = 0;
+	while (i < argn)
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (argv[i][j] < 48 || argv[i][j] > 57)
+			{
+				ft_error("\033[0;31mArgument not numeric found!!\033[0;37m\n");
+				return (FALSE);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (TRUE);
 }

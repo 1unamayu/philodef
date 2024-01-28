@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 10:27:22 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 11:04:05 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 11:06:52 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,5 @@ typedef struct s_persons
 
 
 int	ft_report_error(int error_type);
+int	check_all_numeric(int argn, char *argv[]);
 #endif
