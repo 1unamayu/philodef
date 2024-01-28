@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 10:52:04 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 11:59:31 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 12:03:24 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,14 @@ t_person *ft_persons_create(t_game_data *data)
 	return (persons);
 }
 
+void ft_delete_all(t_person *persons)
+{
+	free(persons);
+}
 int	main(int argn, char *argv[])
 {
 	t_game_data game_data;
-	t_person	*person;
+	t_person	*persons;
 
 	if (argn < 5 || argn > 6)
 		return (ft_report_error(ERR_N_ARGS));
@@ -65,11 +69,12 @@ int	main(int argn, char *argv[])
 
 	ft_read_game_data(argn, argv, &game_data);
 	
-	person = ft_persons_create(&game_data);
+	persons = ft_persons_create(&game_data);
 
 	//init_game(&npcs, argn, argv);
 	//start_game(npcs);
 
-	
+	ft_delete_all(persons);
+	//system("valgrind --leak-check=full ./philo");
 	return (0);
 }
