@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 10:27:22 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 11:23:53 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 15:54:24 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,12 @@ typedef struct s_persons
 {
 	/** Vbles*/
 	unsigned int		position;
+	unsigned int		lfork;
+	unsigned int		rfork;
 	unsigned int		num_meals;
 	long long int		last_meal_timestamp;
 	long long int		start_timestamp;
+	unsigned int 		is_death;
 	/** Game data */
 	t_game_data			*data;
 }	t_person;
