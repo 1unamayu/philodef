@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 21:30:02 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/29 00:00:35 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/29 00:32:50 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,58 @@ void ft_create_philos(t_game *game)
 		
 	}
 }
+int ft_is_death(t_person *person)
+{
+
+	pthread_mutex_lock(&person->env->death_in_table);
+	if (ft_current_time() > person->last_meal_timestamp)
+	{
+		pthread_mutex_unlock(&person->env->death_in_table);
+		return (TRUE);
+	}
+	pthread_mutex_unlock(&person->env->death_in_table);
+	return (FALSE);
+}
+
+void ft_endgame(t_game *game)
+{
+	pthread_mutex_lock(&game->env.death_in_table);
+	game->env.death=1;
+	pthread_mutex_unlock(&game->env.death_in_table);
+}
+void ft_report(t_person *person, int type)
+{
+	long long timestamp;
+	
+	timestamp = ft_current_time()-person->env->start_timestamp;
+	if (type == FORK)
+		printf("%.04lld   %d has taken a fork",timestamp, person->pid);
+	if (type == EATING)
+		printf("%.04lld   %d is eating",timestamp, person->pid);
+	if (type == DIED)
+		printf("%.04lld   %d died",timestamp, person->pid);
+}
 void *ft_doctor(void *args)
 {
-	
+	t_game	*allgame;
+	int j;
+
+	allgame =(t_game *)args;
+	while(allgame->env.death ==0)
+	{
+		j=-1;
+		while(++j < allgame->total_persons)
+		{
+			if (ft_is_death(&allgame->persons[j]))
+			{
+				ft_report(&allgame->persons[j], DIED);
+				ft_endgame(allgame);
+				return (NULL);
+			}
+		}
+
+	}
+	return (NULL);
 }
 
 int check_game_end(t_game *game)
@@ -91,16 +140,7 @@ int check_person(t_person *person)
 	pthread_mutex_unlock(&person->env->death_in_table);
 	return (FALSE);
 }
-void ft_report(t_person *person, int type)
-{
-	long long timestamp;
-	
-	timestamp = ft_current_time()-person->env->start_timestamp;
-	if (type == FORK)
-		printf("%.04lld   %d has taken a fork",timestamp, person->pid);
-	if (type == EATING)
-		printf("%.04lld   %d is eating",timestamp, person->pid);
-}
+
 
 void ft_sleep(long long time)
 {
@@ -112,8 +152,9 @@ void ft_sleep(long long time)
 }
 int ft_person_eats(t_person *person)
 {
-	if (pthread_mutex_lock(&person->death))
-		return (1);
+	printf("dentor de eats\n");
+	//if (pthread_mutex_lock(&person->death))
+	//	return (1);
 	pthread_mutex_unlock(&person->death);
 	pthread_mutex_lock(person->lfork);
 	ft_report(person, 0);
@@ -125,18 +166,19 @@ int ft_person_eats(t_person *person)
 	ft_sleep(person->env->time_eat);
 	pthread_mutex_unlock(person->lfork);
 	pthread_mutex_unlock(person->rfork);
-	return (0);
+	return (FALSE);
 }
 void *ft_life(void *args)
 {
 	t_person *person;
 
-	
+	//printf("life");
 	person = (t_person *)args;
 	if (!person->pid %2)
 		usleep(15000);
 	pthread_mutex_lock(&person->env->control);
 	pthread_mutex_unlock(&person->env->control);
+	printf("life %d\n",check_person(person));
 
 	while(check_person(person)== FALSE)
 	{
@@ -153,18 +195,19 @@ void ft_create_threads(t_game *game)
 	int j;
 
 	j= -1;
-	//printf("Dentro de create threads\n");
+	printf("Dentro de create threads\n");
 	pthread_mutex_lock(&game->env.control);
 	if (pthread_create(&game->doctor, NULL, &ft_doctor,game))
 		report_error(ERR_MALLOC);
+	
 	while (++j < game->total_persons)
 	{
-		printf("%d\n", j);
+		printf("PERSON %d\n", j);
 		if (pthread_create(&game->persons[j].tid,NULL,&ft_life, &game->persons[j]))
 			report_error(ERR_MALLOC);
 	}
 	pthread_mutex_unlock(&game->env.control);
-	printf("Saliendo %d\n", j);
+	
 }
 void ft_set_game(char *argv[], int argn, t_game *game)
 {

@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 21:20:46 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 23:56:37 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/29 00:15:08 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 
 # define FORK 0
 # define EATING 1
+# define DIED 2
 
 typedef struct s_env
 {
