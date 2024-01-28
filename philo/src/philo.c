@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 10:52:04 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 11:11:08 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 11:37:51 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,35 @@
  *
  */
 
+int ft_read_game_data(int argn, char **argv, t_game_data *data)
+{
+	data->num_persons= ft_atoi(argv[1]);
+	data->time_to_die = ft_atoi(argv[2]);
+	data->time_eating = ft_atoi(argv[3]);
+	data->time_sleeping = ft_atoi(argv[4]);
+	data->meals_max=-1;
+	if (argn == 6)
+		data->meals_max = ft_atoi(argv[5]);
+	data->endgame = FALSE;
+}
+
 int	main(int argn, char *argv[])
 {
-	//t_npc	*npcs;
+	t_game_data game_data;
 
 	if (argn < 5 || argn > 6)
 		return (ft_report_error(ERR_N_ARGS));
 	if (!check_all_numeric(argn, argv))
 		return (ft_report_error(ERR_NO_NUMBERS));
 	
+	game_data.num_persons = 0;
+	printf("%d\n",game_data.num_persons);
+
+	ft_read_game_data(argn, argv, &game_data);
+	printf("%d\n",game_data.num_persons);
+	printf("%d\n",game_data.meals_max);
 	//init_game(&npcs, argn, argv);
 	//start_game(npcs);
+
 	return (0);
 }
