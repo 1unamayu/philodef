@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 10:27:22 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 10:45:13 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 10:48:46 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,37 +36,29 @@
 
 typedef struct s_game_data
 {
-	
-	pthread_t 		*persons;
+	pthread_t		*persons;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	screen;
 	pthread_mutex_t	death;
 	pthread_mutex_t	endgame;
-
-
-	
-
-
+	/** Vbles*/
 	unsigned int	num_persons;		/**< Number of Philosophers. */
 	unsigned int	time_to_die;		/**< Time to die [arg(1)]. */
 	unsigned int	time_eating;		/**< Time eating [arg(2)]. */
 	unsigned int	time_sleeping;		/**< Time sleeping [arg(3)]. */
-	unsigned int	meals_max;			/**< Min. numb of meals each philosopher[arg(4)]. */
+	unsigned int	meals_max;			/**< Min. numb of meals[arg(4)]. */
 	unsigned int	endgame;
-	
-	
 }	t_game_data;
 
 typedef struct s_persons
 {
+	/** Vbles*/
 	unsigned int		position;
 	unsigned int		num_meals;
 	long long int		last_meal_timestamp;
 	long long int		start_timestamp;
-	
+	/** Game data */
 	t_game_data			*data;
-	
 }	t_person;
-
 
 #endif
