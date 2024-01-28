@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 10:27:22 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 15:54:24 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 16:52:02 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 typedef struct s_game_data
 {
-	pthread_t		*persons;
+	pthread_t		*thread_person;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	screen;
 	pthread_mutex_t	death;
@@ -48,6 +48,7 @@ typedef struct s_game_data
 	unsigned int	time_sleeping;		/**< Time sleeping [arg(3)]. */
 	unsigned int	meals_max;			/**< Min. numb of meals[arg(4)]. */
 	unsigned int	endgame;
+	unsigned int	start_timestamp;
 }	t_game_data;
 
 typedef struct s_persons
@@ -68,4 +69,5 @@ typedef struct s_persons
 int	ft_report_error(int error_type);
 int	check_all_numeric(int argn, char *argv[]);
 int	ft_atoi(const char *str);
+long long	ft_current_time(void);
 #endif

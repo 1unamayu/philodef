@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 10:52:04 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 16:09:56 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 17:15:07 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,18 @@ t_person *ft_persons_create(t_game_data *data)
 	persons = malloc(sizeof(t_person)*data->num_persons);
 	while (cont < data->num_persons)
 	{
-		printf("inicializando persona %d \n",cont+1);
-		persons->position = cont;
-		persons->lfork = cont;
-		persons->rfork = ((cont +1) % data->num_persons);
-		persons->is_death= 0;
-		persons->data = data;
-		printf("Position            :%d\n", persons->position);
-		printf("Left fork position  :%d\n", persons->lfork);
-		printf("Right fork position :%d\n", persons->rfork);
-		printf("Time to eat         :%d\n", persons->data->time_to_die);
-		printf("Numero persons      :%d\n", data->num_persons);
-		printf(" Modulo :%d \n", (1 % 2));
+		//printf("inicializando persona %d \n",cont+1);
+		(persons+cont)->position = cont;
+		(persons+cont)->lfork = cont;
+		(persons+cont)->rfork = ((cont +1) % data->num_persons);
+		(persons+cont)->is_death= 0;
+		(persons+cont)->data = data;
+		printf("Position            :%d\n", (persons+cont)->position);
+		//printf("Left fork position  :%d\n", persons->lfork);
+		//printf("Right fork position :%d\n", persons->rfork);
+		//printf("Time to eat         :%d\n", persons->data->time_to_die);
+		//printf("Numero persons      :%d\n", data->num_persons);
+		//printf(" Modulo :%d \n", (1 % 2));
 		cont++;
 	}
 	return (persons);
@@ -71,12 +71,36 @@ void ft_delete_all(t_person *persons)
 {
 	free(persons);
 }
-
+void ft_delete_game(t_game_data *data)
+{
+	free(data->forks);
+	free(data->thread_person);
+}
 void *ft_vida(void *arg)
 {
+	t_person *person;
+
+	person = arg;
 	
-	
+	printf("En vida %d\n",person->position);
 	return NULL;
+}
+
+void ft_init_game_data(t_game_data *data)
+{
+	int cont;
+
+	cont = 0;
+	data->thread_person = malloc(sizeof(pthread_t)*data->num_persons);
+	data->forks = malloc(sizeof(pthread_mutex_t)*data->num_persons);
+	while (cont < data->num_persons)
+	{
+		pthread_mutex_init(data->forks, NULL);
+		cont++;
+	}
+	//printf("Jugadores %d\n",data->num_persons);
+
+	
 }
 int	main(int argn, char *argv[])
 {
@@ -94,17 +118,30 @@ int	main(int argn, char *argv[])
 		return (ft_report_error(ERR_NO_NUMBERS));
 	
 	game_data.num_persons = 0;
-	
-
 	ft_read_game_data(argn, argv, &game_data);
 	
 	persons = ft_persons_create(&game_data);
-	printf("%d\n",game_data.num_persons);
-	//init_game(&npcs, argn, argv);
-	//start_game(npcs);
+	game_data.start_timestamp = ft_current_time();
+	ft_init_game_data(&game_data);
 	
-	
+	cont = 0;
+	while (cont < game_data.num_persons)
+	{
+		//printf("vida %d \n", cont);
+		pthread_create(game_data.thread_person+cont, NULL, ft_vida, persons+cont);
+		pthread_detach(game_data.thread_person[cont]);
+		cont ++;
+		usleep(100);
+		
+	}
+	cont = 0;
+	while (cont < game_data.num_persons)
+	{
+		printf("fuera %d\n", persons[cont].position);
+		cont++;
+	}
 	ft_delete_all(persons);
+	ft_delete_game(&game_data);
 	//system("valgrind --leak-check=full ./philo");
 	return (0);
 }
