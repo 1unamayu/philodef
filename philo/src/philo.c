@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 10:52:04 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 12:03:24 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/28 15:01:54 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ t_person *ft_persons_create(t_game_data *data)
 	int cont;
 
 	cont = 0;
-	persons = malloc(sizeof(t_person)*10);
+	
+	persons = malloc(sizeof(t_person)*data->num_persons);
 	return (persons);
 }
 
@@ -54,10 +55,24 @@ void ft_delete_all(t_person *persons)
 {
 	free(persons);
 }
+
+void *ft_vida(void *arg)
+{
+	while(42)
+	{
+		printf("vida 1 persona");
+	}
+	return NULL;
+}
 int	main(int argn, char *argv[])
 {
 	t_game_data game_data;
 	t_person	*persons;
+
+	pthread_t  huu;
+	int cont;
+
+	cont = 0;
 
 	if (argn < 5 || argn > 6)
 		return (ft_report_error(ERR_N_ARGS));
@@ -65,15 +80,22 @@ int	main(int argn, char *argv[])
 		return (ft_report_error(ERR_NO_NUMBERS));
 	
 	game_data.num_persons = 0;
-	printf("%d\n",game_data.num_persons);
+	
 
 	ft_read_game_data(argn, argv, &game_data);
 	
 	persons = ft_persons_create(&game_data);
-
+	printf("%d\n",game_data.num_persons);
 	//init_game(&npcs, argn, argv);
 	//start_game(npcs);
-
+	
+	
+	while (cont < game_data.num_persons)
+	{
+		printf("Cont =%d\n",cont);
+		pthread_create(&game_data.persons+cont, NULL, ft_vida, persons+cont);
+		cont++;
+	}
 	ft_delete_all(persons);
 	//system("valgrind --leak-check=full ./philo");
 	return (0);
