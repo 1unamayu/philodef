@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 21:30:02 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/29 00:32:50 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:54:45 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void ft_create_mutex(t_game *game)
 
 	pthread_mutex_init(&game->env.message, NULL);
 	pthread_mutex_init(&game->env.control, NULL);
-	pthread_mutex_init(&game->env.death_in_table, NULL);
+	pthread_mutex_init(&game->env.m_readwrite, NULL);
 
 	game->forks = malloc(sizeof(pthread_mutex_t)*game->total_persons);
 	if (!game->forks)
@@ -35,11 +35,13 @@ void ft_create_forks(t_person *person, t_game *game)
 {
 	int position;
 
-	person->lfork = &game->forks[(person->pid -1)];
-	position = (person->pid ) % game->total_persons;
-	//printf("Left %d\n", person->pid -1);
-	//printf("Right %d\n", position);
-	person->rfork = &game->forks[position];
+	person->m_lfork = &game->forks[(person->pid -1)];
+	if (person->pid == game->total_persons)
+		person->m_rfork= &game->forks[0];
+	else
+		person->m_rfork= &game->forks[person->pid];
+	if (game->total_persons == 1)
+		person->m_rfork = NULL;
 }
 
 void ft_create_philos(t_game *game)
@@ -61,83 +63,50 @@ void ft_create_philos(t_game *game)
 		
 	}
 }
-int ft_is_death(t_person *person)
-{
 
-	pthread_mutex_lock(&person->env->death_in_table);
-	if (ft_current_time() > person->last_meal_timestamp)
-	{
-		pthread_mutex_unlock(&person->env->death_in_table);
-		return (TRUE);
-	}
-	pthread_mutex_unlock(&person->env->death_in_table);
-	return (FALSE);
-}
-
-void ft_endgame(t_game *game)
-{
-	pthread_mutex_lock(&game->env.death_in_table);
-	game->env.death=1;
-	pthread_mutex_unlock(&game->env.death_in_table);
-}
 void ft_report(t_person *person, int type)
 {
 	long long timestamp;
 	
 	timestamp = ft_current_time()-person->env->start_timestamp;
 	if (type == FORK)
-		printf("%.04lld   %d has taken a fork",timestamp, person->pid);
+		printf("%.04lld   %d has taken a fork\n",timestamp, person->pid);
+	if (type == FORKK)
+		printf("%.04lld   %d has taken a rfork\n",timestamp, person->pid);
 	if (type == EATING)
-		printf("%.04lld   %d is eating",timestamp, person->pid);
+		printf("%.04lld   %d is eating\n",timestamp, person->pid);
 	if (type == DIED)
-		printf("%.04lld   %d died",timestamp, person->pid);
+		printf("%.04lld   %d died\n",timestamp, person->pid);
+	if (type == SLEEP)
+		printf("%.04lld   %d is sleeping\n",timestamp, person->pid);
+	if (type == THINK)
+		printf("%.04lld   %d is thinking\n",timestamp, person->pid);
 }
-void *ft_doctor(void *args)
-{
-	t_game	*allgame;
-	int j;
 
-	allgame =(t_game *)args;
-	while(allgame->env.death ==0)
-	{
-		j=-1;
-		while(++j < allgame->total_persons)
-		{
-			if (ft_is_death(&allgame->persons[j]))
-			{
-				ft_report(&allgame->persons[j], DIED);
-				ft_endgame(allgame);
-				return (NULL);
-			}
-		}
-
-	}
-	return (NULL);
-}
 
 int check_game_end(t_game *game)
 {
-	pthread_mutex_lock(&game->env.death_in_table);
+	pthread_mutex_lock(&game->env.m_readwrite);
 	if (game->env.death)
 	{
-		pthread_mutex_unlock(&game->env.death_in_table);
+		pthread_mutex_unlock(&game->env.m_readwrite);
 		return(TRUE);
 	}
 
-	pthread_mutex_unlock(&game->env.death_in_table);
+	pthread_mutex_unlock(&game->env.m_readwrite);
 	return (FALSE);
 }
 
 int check_person(t_person *person)
 {
-	pthread_mutex_lock(&person->env->death_in_table);
+	pthread_mutex_lock(&person->env->m_readwrite);
 	if (person->env->death)
 	{
-		pthread_mutex_unlock(&person->env->death_in_table);
+		pthread_mutex_unlock(&person->env->m_readwrite);
 		return(TRUE);
 	}
 
-	pthread_mutex_unlock(&person->env->death_in_table);
+	pthread_mutex_unlock(&person->env->m_readwrite);
 	return (FALSE);
 }
 
@@ -152,20 +121,27 @@ void ft_sleep(long long time)
 }
 int ft_person_eats(t_person *person)
 {
-	printf("dentor de eats\n");
+	//printf("dentor de eats\n");
 	//if (pthread_mutex_lock(&person->death))
 	//	return (1);
 	pthread_mutex_unlock(&person->death);
-	pthread_mutex_lock(person->lfork);
-	ft_report(person, 0);
-	pthread_mutex_lock(person->lfork);
+	pthread_mutex_lock(person->m_lfork);
 	ft_report(person, FORK);
+	if (person->m_rfork)
+		pthread_mutex_lock(person->m_rfork);
+	else
+		return (TRUE);
+	//printf("segundo fork\n");
+	ft_report(person, FORKK);
 	ft_report(person, EATING);
 	person->meals++;
-	pthread_mutex_lock(&person->env->death_in_table);
+	pthread_mutex_lock(&person->env->m_readwrite);
+	person->last_meal_timestamp = ft_current_time();
+	pthread_mutex_unlock(&person->env->m_readwrite);
+	printf("a dormir!\n");
 	ft_sleep(person->env->time_eat);
-	pthread_mutex_unlock(person->lfork);
-	pthread_mutex_unlock(person->rfork);
+	pthread_mutex_unlock(person->m_lfork);
+	pthread_mutex_unlock(person->m_rfork);
 	return (FALSE);
 }
 void *ft_life(void *args)
@@ -178,16 +154,20 @@ void *ft_life(void *args)
 		usleep(15000);
 	pthread_mutex_lock(&person->env->control);
 	pthread_mutex_unlock(&person->env->control);
-	printf("life %d\n",check_person(person));
+	//printf("life %d\n",check_person(person));
 
 	while(check_person(person)== FALSE)
 	{
 		if (!ft_person_eats(person))
 		{
 			person->env->n_meals++;
+			return (NULL);
 		}
 		else
 			return (NULL);
+		ft_report(person, SLEEP);
+		ft_sleep(person->env->time_sleep);
+		ft_report(person, THINK);
 	}
 }
 void ft_create_threads(t_game *game)
@@ -195,14 +175,14 @@ void ft_create_threads(t_game *game)
 	int j;
 
 	j= -1;
-	printf("Dentro de create threads\n");
+	//printf("Dentro de create threads\n");
 	pthread_mutex_lock(&game->env.control);
 	if (pthread_create(&game->doctor, NULL, &ft_doctor,game))
 		report_error(ERR_MALLOC);
 	
 	while (++j < game->total_persons)
 	{
-		printf("PERSON %d\n", j);
+		//printf("PERSON %d\n", j);
 		if (pthread_create(&game->persons[j].tid,NULL,&ft_life, &game->persons[j]))
 			report_error(ERR_MALLOC);
 	}

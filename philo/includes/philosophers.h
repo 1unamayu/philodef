@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 21:20:46 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/29 00:15:08 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:44:10 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@
 # define FORK 0
 # define EATING 1
 # define DIED 2
+# define FORKK 100
+# define SLEEP 3
+# define THINK 5
 
 typedef struct s_env
 {
@@ -49,7 +52,7 @@ typedef struct s_env
 	int 	n_meals;
 	pthread_mutex_t message;
 	pthread_mutex_t control;
-	pthread_mutex_t death_in_table;
+	pthread_mutex_t m_readwrite; /*Mutex to avoid dataraces in read write*/
 } t_env;
 
 typedef struct s_person
@@ -59,8 +62,8 @@ typedef struct s_person
 	int meals;
 	long long last_meal_timestamp;
 	pthread_mutex_t death;
-	pthread_mutex_t *lfork;
-	pthread_mutex_t *rfork;
+	pthread_mutex_t *m_lfork;
+	pthread_mutex_t *m_rfork;
 	t_env	*env;
 } t_person;
 
@@ -81,4 +84,7 @@ int	ft_atoi(const char *str);
 long long	ft_current_time(void);
 void ft_free_game(t_game *game);
 void ft_start_game(t_game *game);
+
+void ft_report(t_person *person, int type);
+void    *ft_doctor(void *args);
 #endif

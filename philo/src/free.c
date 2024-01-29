@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 23:39:27 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 23:57:19 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:19:27 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void ft_free_game(t_game *game)
 
     pthread_mutex_destroy(&game->env.message);
     pthread_mutex_destroy(&game->env.control);
-    pthread_mutex_destroy(&game->env.death_in_table);
+    pthread_mutex_destroy(&game->env.m_readwrite);
     j=-1;
     while (++j < game->total_persons)
     {

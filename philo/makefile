@@ -6,7 +6,7 @@
 #    By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/28 10:14:23 by xamayuel          #+#    #+#              #
-#    Updated: 2024/01/28 23:59:33 by xamayuel         ###   ########.fr        #
+#    Updated: 2024/01/29 09:12:48 by xamayuel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ SRC =	$(SRC_DIR)/philo.c \
 		$(SRC_DIR)/report.c \
 		$(SRC_DIR)/checks.c \
 		$(SRC_DIR)/free.c\
-		$(SRC_DIR)/game.c
+		$(SRC_DIR)/game.c\
+		$(SRC_DIR)/doctor.c
 		
 
 SRC2 =	$(SRC_DIR)/philo.c \
