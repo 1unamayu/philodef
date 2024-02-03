@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 21:20:46 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/02/03 23:37:00 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/02/03 23:57:46 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ typedef struct s_data
 	int				number_npc_meals;
 	long long		t_start;
 	int				death;
-	int				fat;
+	int				number_full; // Number of npc that has eaten min meals
 	pthread_mutex_t	m_screen; //Mutex to protec stdout
 	pthread_mutex_t	m_main; //Mutex to protect threads
 	pthread_mutex_t	m_readwrite; //Mutex to protec read write data race
 }			t_data;
 
-typedef struct s_philo
+typedef struct s_npc
 {
 	int				id_npc; // NPC ID (POSITION)
 	pthread_t		id_thread; // NPC THREAD

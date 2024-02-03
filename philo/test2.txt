@@ -1,165 +1,166 @@
-0001 Philosopher 5 has taken a fork
-0001 Philosopher 1 has taken a fork
-0001 Philosopher 1 has taken a fork
-0001 Philosopher 1 is eating
-0001 Philosopher 3 has taken a fork
-0001 Philosopher 3 has taken a fork
-0001 Philosopher 3 is eating
-0201 Philosopher 1 is sleeping
-0201 Philosopher 2 has taken a fork
-0201 Philosopher 5 has taken a fork
-0201 Philosopher 5 is eating
-0201 Philosopher 3 is sleeping
-0201 Philosopher 2 has taken a fork
-0201 Philosopher 2 is eating
-0201 Philosopher 4 has taken a fork
-0401 Philosopher 1 is thinking
-0401 Philosopher 3 is thinking
-0401 Philosopher 2 is sleeping
-0401 Philosopher 1 has taken a fork
-0401 Philosopher 1 has taken a fork
-0401 Philosopher 1 is eating
-0401 Philosopher 5 is sleeping
-0401 Philosopher 4 has taken a fork
-0401 Philosopher 4 is eating
-0401 Philosopher 3 has taken a fork
-0601 Philosopher 2 is thinking
-0601 Philosopher 1 is sleeping
-0601 Philosopher 2 has taken a fork
-0601 Philosopher 5 is thinking
-0601 Philosopher 4 is sleeping
-0601 Philosopher 3 has taken a fork
-0601 Philosopher 3 is eating
-0601 Philosopher 5 has taken a fork
-0601 Philosopher 5 has taken a fork
-0601 Philosopher 5 is eating
-0801 Philosopher 5 is sleeping
-0801 Philosopher 4 is thinking
-0801 Philosopher 3 is sleeping
-0801 Philosopher 2 has taken a fork
-0801 Philosopher 2 is eating
-0801 Philosopher 4 has taken a fork
-0801 Philosopher 4 has taken a fork
-0801 Philosopher 4 is eating
-0801 Philosopher 1 is thinking
-0801 Philosopher 1 has taken a fork
-1001 Philosopher 3 is thinking
-1001 Philosopher 4 is sleeping
-1001 Philosopher 2 is sleeping
-1001 Philosopher 3 has taken a fork
-1001 Philosopher 3 has taken a fork
-1001 Philosopher 3 is eating
-1001 Philosopher 1 has taken a fork
-1001 Philosopher 1 is eating
-1001 Philosopher 5 is thinking
-1001 Philosopher 5 has taken a fork
-1201 Philosopher 2 is thinking
-1201 Philosopher 1 is sleeping
-1201 Philosopher 2 has taken a fork
-1201 Philosopher 5 has taken a fork
-1201 Philosopher 5 is eating
-1201 Philosopher 4 is thinking
-1201 Philosopher 3 is sleeping
-1201 Philosopher 2 has taken a fork
-1201 Philosopher 2 is eating
-1201 Philosopher 4 has taken a fork
-1401 Philosopher 3 is thinking
-1401 Philosopher 3 has taken a fork
-1401 Philosopher 2 is sleeping
-1401 Philosopher 1 is thinking
-1401 Philosopher 5 is sleeping
-1401 Philosopher 1 has taken a fork
-1401 Philosopher 1 has taken a fork
-1401 Philosopher 1 is eating
-1401 Philosopher 4 has taken a fork
-1401 Philosopher 4 is eating
-1601 Philosopher 4 is sleeping
-1601 Philosopher 3 has taken a fork
-1601 Philosopher 3 is eating
-1601 Philosopher 1 is sleeping
-1601 Philosopher 5 is thinking
-1601 Philosopher 5 has taken a fork
-1601 Philosopher 5 has taken a fork
-1601 Philosopher 5 is eating
-1601 Philosopher 2 is thinking
-1601 Philosopher 2 has taken a fork
-1801 Philosopher 4 is thinking
-1801 Philosopher 1 is thinking
-1801 Philosopher 1 has taken a fork
-1801 Philosopher 5 is sleeping
-1801 Philosopher 3 is sleeping
-1801 Philosopher 4 has taken a fork
-1801 Philosopher 4 has taken a fork
-1801 Philosopher 4 is eating
-1801 Philosopher 2 has taken a fork
-1801 Philosopher 2 is eating
-2001 Philosopher 4 is sleeping
-2001 Philosopher 2 is sleeping
-2001 Philosopher 1 has taken a fork
-2001 Philosopher 1 is eating
-2001 Philosopher 3 is thinking
-2001 Philosopher 3 has taken a fork
-2001 Philosopher 3 has taken a fork
-2001 Philosopher 3 is eating
-2001 Philosopher 5 is thinking
-2001 Philosopher 5 has taken a fork
-2201 Philosopher 2 is thinking
-2201 Philosopher 3 is sleeping
-2201 Philosopher 4 is thinking
-2201 Philosopher 4 has taken a fork
-2201 Philosopher 1 is sleeping
-2201 Philosopher 5 has taken a fork
-2201 Philosopher 5 is eating
-2201 Philosopher 2 has taken a fork
-2201 Philosopher 2 has taken a fork
-2201 Philosopher 2 is eating
-2401 Philosopher 3 is thinking
-2401 Philosopher 5 is sleeping
-2401 Philosopher 4 has taken a fork
-2401 Philosopher 4 is eating
-2401 Philosopher 2 is sleeping
-2401 Philosopher 3 has taken a fork
-2401 Philosopher 1 is thinking
-2401 Philosopher 1 has taken a fork
-2401 Philosopher 1 has taken a fork
-2401 Philosopher 1 is eating
-2601 Philosopher 1 is sleeping
-2601 Philosopher 5 is thinking
-2601 Philosopher 4 is sleeping
-2601 Philosopher 5 has taken a fork
-2601 Philosopher 5 has taken a fork
-2601 Philosopher 5 is eating
-2601 Philosopher 3 has taken a fork
-2601 Philosopher 3 is eating
-2601 Philosopher 2 is thinking
-2601 Philosopher 2 has taken a fork
-2801 Philosopher 5 is sleeping
-2801 Philosopher 1 is thinking
-2801 Philosopher 1 has taken a fork
-2801 Philosopher 3 is sleeping
-2801 Philosopher 2 has taken a fork
-2801 Philosopher 2 is eating
-2801 Philosopher 4 is thinking
-2801 Philosopher 4 has taken a fork
-2801 Philosopher 4 has taken a fork
-2801 Philosopher 4 is eating
-3001 Philosopher 2 is sleeping
-3001 Philosopher 1 has taken a fork
-3001 Philosopher 1 is eating
-3001 Philosopher 4 is sleeping
-3001 Philosopher 3 is thinking
-3001 Philosopher 3 has taken a fork
-3001 Philosopher 3 has taken a fork
-3001 Philosopher 3 is eating
-3001 Philosopher 5 is thinking
-3001 Philosopher 5 has taken a fork
-3201 Philosopher 5 has taken a fork
-3201 Philosopher 5 is eating
-3201 Philosopher 4 is thinking
-3201 Philosopher 4 has taken a fork
-3201 Philosopher 2 is thinking
-3201 Philosopher 2 has taken a fork
-3201 Philosopher 2 has taken a fork
-3201 Philosopher 2 is eating
-3401 Philosopher 4 has taken a fork
-3401 Philosopher 4 is eating
+000004    5 has taken a fork
+000004    3 has taken a fork
+000004    3 has taken a fork
+000004    3 is eating
+000004    1 has taken a fork
+000004    1 has taken a fork
+000004    1 is eating
+000204    3 is sleeping
+000204    1 is sleeping
+000204    5 has taken a fork
+000204    5 is eating
+000204    2 has taken a fork
+000204    4 has taken a fork
+000204    2 has taken a fork
+000204    2 is eating
+000404    1 is thinking
+000404    3 is thinking
+000404    5 is sleeping
+000404    1 has taken a fork
+000404    4 has taken a fork
+000404    4 is eating
+000404    2 is sleeping
+000404    3 has taken a fork
+000404    1 has taken a fork
+000404    1 is eating
+000604    1 is sleeping
+000604    4 is sleeping
+000604    3 has taken a fork
+000604    3 is eating
+000604    2 is thinking
+000604    2 has taken a fork
+000604    5 is thinking
+000604    5 has taken a fork
+000604    5 has taken a fork
+000604    5 is eating
+000804    1 is thinking
+000804    5 is sleeping
+000804    1 has taken a fork
+000804    3 is sleeping
+000804    2 has taken a fork
+000804    2 is eating
+000804    4 is thinking
+000804    4 has taken a fork
+000804    4 has taken a fork
+000804    4 is eating
+001004    4 is sleeping
+001004    5 is thinking
+001004    5 has taken a fork
+001004    2 is sleeping
+001004    1 has taken a fork
+001004    1 is eating
+001004    3 is thinking
+001004    3 has taken a fork
+001004    3 has taken a fork
+001004    3 is eating
+001204    1 is sleeping
+001204    5 has taken a fork
+001204    5 is eating
+001204    3 is sleeping
+001204    4 is thinking
+001204    4 has taken a fork
+001204    2 is thinking
+001204    2 has taken a fork
+001204    2 has taken a fork
+001204    2 is eating
+001404    5 is sleeping
+001404    4 has taken a fork
+001404    4 is eating
+001404    3 is thinking
+001404    2 is sleeping
+001404    3 has taken a fork
+001404    1 is thinking
+001404    1 has taken a fork
+001404    1 has taken a fork
+001404    1 is eating
+001604    4 is sleeping
+001604    3 has taken a fork
+001604    3 is eating
+001604    2 is thinking
+001604    5 is thinking
+001604    1 is sleeping
+001604    2 has taken a fork
+001604    5 has taken a fork
+001604    5 has taken a fork
+001604    5 is eating
+001804    3 is sleeping
+001804    2 has taken a fork
+001804    2 is eating
+001804    5 is sleeping
+001804    1 is thinking
+001804    1 has taken a fork
+001804    4 is thinking
+001804    4 has taken a fork
+001804    4 has taken a fork
+001804    4 is eating
+002004    3 is thinking
+002004    2 is sleeping
+002004    3 has taken a fork
+002004    1 has taken a fork
+002004    1 is eating
+002004    4 is sleeping
+002004    3 has taken a fork
+002004    3 is eating
+002004    5 is thinking
+002004    5 has taken a fork
+002204    4 is thinking
+002204    2 is thinking
+002204    3 is sleeping
+002204    4 has taken a fork
+002204    1 is sleeping
+002204    2 has taken a fork
+002204    2 has taken a fork
+002204    5 has taken a fork
+002204    5 is eating
+002204    2 is eating
+002404    2 is sleeping
+002404    1 is thinking
+002404    5 is sleeping
+002404    3 is thinking
+002404    3 has taken a fork
+002404    1 has taken a fork
+002404    1 has taken a fork
+002404    1 is eating
+002404    4 has taken a fork
+002404    4 is eating
+002604    2 is thinking
+002604    1 is sleeping
+002604    2 has taken a fork
+002604    5 is thinking
+002604    3 has taken a fork
+002604    3 is eating
+002604    5 has taken a fork
+002604    5 has taken a fork
+002604    5 is eating
+002604    4 is sleeping
+002804    1 is thinking
+002804    3 is sleeping
+002804    2 has taken a fork
+002804    2 is eating
+002804    4 is thinking
+002804    5 is sleeping
+002804    1 has taken a fork
+002804    4 has taken a fork
+002804    4 has taken a fork
+002804    4 is eating
+003004    3 is thinking
+003004    3 has taken a fork
+003004    1 has taken a fork
+003004    1 is eating
+003004    2 is sleeping
+003004    5 is thinking
+003004    4 is sleeping
+003004    5 has taken a fork
+003004    3 has taken a fork
+003004    3 is eating
+003204    5 has taken a fork
+003204    5 is eating
+003204    2 is thinking
+003204    2 has taken a fork
+003204    2 has taken a fork
+003204    2 is eating
+003204    4 is thinking
+003204    4 has taken a fork
+003404    4 has taken a fork
+003404    4 is eating
+003805    1 died

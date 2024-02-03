@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:24:32 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/02/03 23:36:27 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/02/03 23:58:32 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	ft_read_input(t_game *game, char **input, int argn)
 {
 	game->num_npcs = ft_atoi(input[1]);
 	game->env.death = 0;
-	game->env.fat = 0;
+	game->env.number_full = 0;
 	game->env.time_to_die = ft_atoi(input[2]);
 	game->env.time_eating = ft_atoi(input[3]);
 	game->env.time_sleeping = ft_atoi(input[4]);

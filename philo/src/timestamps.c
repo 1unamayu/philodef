@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   timestamps.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 16:27:01 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/29 12:19:36 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/02/04 00:00:29 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	ft_usleep(long long time)
 		usleep(300);
 }
 
-// eliminar esta funcion
 long long	ft_timestamp(long long time)
 {
 	long long		now;

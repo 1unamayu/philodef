@@ -6,14 +6,14 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 09:10:08 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/02/03 23:33:40 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/02/03 23:58:42 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philosophers.h>
 
 static void	ft_endgame(t_game *game);
-static int	ft_check_death(t_npc *philo);
+static int	ft_check_death(t_npc *npc);
 
 void	*ft_doctor_health(void *args)
 {
@@ -34,7 +34,7 @@ void	*ft_doctor_health(void *args)
 			}
 		}
 		if (game->env.number_npc_meals && \
-				(game->env.fat == game->num_npcs))
+				(game->env.number_full == game->num_npcs))
 		{
 			ft_endgame(game);
 			return (NULL);
@@ -44,18 +44,18 @@ void	*ft_doctor_health(void *args)
 	return (NULL);
 }
 
-static int	ft_check_death(t_npc *philo)
+static int	ft_check_death(t_npc *npc)
 {
 	long long	hungry;
 
-	pthread_mutex_lock(&philo->env->m_readwrite);
-	hungry = ft_timestamp(philo->t_last_meal);
-	if (hungry > philo->env->time_to_die)
+	pthread_mutex_lock(&npc->env->m_readwrite);
+	hungry = ft_timestamp(npc->t_last_meal);
+	if (hungry > npc->env->time_to_die)
 	{
-		pthread_mutex_unlock(&philo->env->m_readwrite);
+		pthread_mutex_unlock(&npc->env->m_readwrite);
 		return (1);
 	}
-	pthread_mutex_unlock(&philo->env->m_readwrite);
+	pthread_mutex_unlock(&npc->env->m_readwrite);
 	return (0);
 }
 
