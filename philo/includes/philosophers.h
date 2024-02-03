@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 21:20:46 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/29 09:44:10 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/02/03 23:37:00 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@
 # define WHITE "\033[0;37m"
 # define BLACK "\033[1;30m"
 
-# define ERR_N_ARGS 1
-# define ERR_NO_NUMBERS 2
-# define ERR_ZERO 3
-# define ERR_MALLOC 4
-# define ERR_MUTEX 5
+# define ERR_N_ARGS 100
+# define ERR_NO_NUMBERS 200
+# define ERR_ZERO 300
+# define ERR_MALLOC 10
+# define ERR_MUTEX 20
+# define ERR_MINIMUM 15
+# define ERR_NONUMERIC 600
 # define FALSE 0
 # define TRUE 1
 
@@ -41,50 +43,63 @@
 # define SLEEP 3
 # define THINK 5
 
-typedef struct s_env
+typedef struct s_data
 {
-	int 	time_die;
-	int 	time_eat;
-	int		time_sleep;
-	int 	max_meals;
-	long long	start_timestamp;
-	int 	death;
-	int 	n_meals;
-	pthread_mutex_t message;
-	pthread_mutex_t control;
-	pthread_mutex_t m_readwrite; /*Mutex to avoid dataraces in read write*/
-} t_env;
+	int				time_to_die;
+	int				time_eating;
+	int				time_sleeping;
+	int				number_npc_meals;
+	long long		t_start;
+	int				death;
+	int				fat;
+	pthread_mutex_t	m_screen; //Mutex to protec stdout
+	pthread_mutex_t	m_main; //Mutex to protect threads
+	pthread_mutex_t	m_readwrite; //Mutex to protec read write data race
+}			t_data;
 
-typedef struct s_person
+typedef struct s_philo
 {
-	int 	pid;
-	pthread_t 	tid;
-	int meals;
-	long long last_meal_timestamp;
-	pthread_mutex_t death;
-	pthread_mutex_t *m_lfork;
-	pthread_mutex_t *m_rfork;
-	t_env	*env;
-} t_person;
+	int				id_npc; // NPC ID (POSITION)
+	pthread_t		id_thread; // NPC THREAD
+	int				meals_eaten; //Number of NPC has eat
+	long long		t_last_meal; //Timestampo of the last npc meal
+	pthread_mutex_t	m_npc_death; //MUtex to proctec death
+	pthread_mutex_t	*m_lfork; //mutex to protect npc left fork
+	pthread_mutex_t	*m_rfork; //Mutex to protec npc right fork
+	t_data			*env;
+}			t_npc;
 
 typedef struct s_game
 {
-	int total_persons;
-	pthread_t doctor;
-	pthread_mutex_t *forks;
-	t_person	*persons;
-	t_env env;
-}t_game;
+	int				num_npcs;	// Number of NPCs players
+	pthread_t		doctor;		// Thread to control npcs health
+	pthread_mutex_t	*forks;		// Mutex to protect forks
+	t_npc			*philos;
+	t_data			env;
+}			t_game;
 
-int	check_all_numeric(int argn, char *argv[]);
-void	report_error(int type);
-void	show_error_arguments(void);
-int	ft_error(char *string);
-int	ft_atoi(const char *str);
+// errors_show
+void		ft_report_error(int type);
+// ft_atoi
+int			ft_atoi(const char *str);
+//game_data_checks
+int			ft_valid_input(int argn, char **argv);
+//game_data
+void		ft_set_game(char **data, int argc, t_game *game);
+//game_free
+void		ft_free_game(t_game *game);
+//game_start
+int			ft_start_game(t_game *game);
+//npc_doctor
+void		*ft_doctor_health(void *args);
+//npc_life
+void		*ft_npc_life(void *args);
+int			ft_check_changes_philo(t_npc *philo);
+//npc_print
+void		ft_print(t_npc *philo, char *msg);
+//timestamps
+void		ft_usleep(long long time);
+long long	ft_timestamp(long long time);
 long long	ft_current_time(void);
-void ft_free_game(t_game *game);
-void ft_start_game(t_game *game);
 
-void ft_report(t_person *person, int type);
-void    *ft_doctor(void *args);
 #endif

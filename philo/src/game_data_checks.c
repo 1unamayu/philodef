@@ -1,31 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checks.c                                           :+:      :+:    :+:   */
+/*   game_data_checks.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 11:55:52 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 21:31:57 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/02/03 23:29:06 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-/**
- * @brief Check if all command-line arguments are numeric.
- * 
- * This function iterates through the command-line arguments starting from 1,
- * checking each character in the argument strings.
- * If any character is not a numeric character ('0' to '9'),
- * it displays an error message and returns FALSE.
- * 
- * @param argn The number of command-line arguments.
- * @param argv An array of strings containing the command-line arguments.
- * 
- * @return Returns TRUE if all arguments are numeric, otherwise FALSE.
- */
-int	check_all_numeric(int argn, char *argv[])
+static int	check_all_numeric(int argn, char *argv[]);
+
+int	ft_valid_input(int argn, char **argv)
+{
+	int	cont;
+
+	cont = 1;
+	if (argn < 5 || argn > 6)
+		ft_report_error(ERR_N_ARGS);
+	if (check_all_numeric(argn, argv) == FALSE)
+		ft_report_error(ERR_NO_NUMBERS);
+	while (cont < 5)
+	{
+		if (ft_atoi(argv[cont++]) == 0)
+			ft_report_error(ERR_ZERO);
+		if (cont > 1 && ft_atoi(argv[cont++]) <= 60)
+			ft_report_error(ERR_MINIMUM);
+	}
+	if (argn == 6)
+	{
+		if (ft_atoi(argv[cont++]) == 0)
+			ft_report_error(ERR_ZERO);
+	}
+	return (TRUE);
+}
+
+static int	check_all_numeric(int argn, char *argv[])
 {
 	int	i;
 	int	j;
@@ -39,7 +52,7 @@ int	check_all_numeric(int argn, char *argv[])
 		{
 			if (argv[i][j] < 48 || argv[i][j] > 57)
 			{
-				ft_error("\033[0;31mArgument not numeric found!!\033[0;37m\n");
+				ft_report_error(ERR_NONUMERIC);
 				return (FALSE);
 			}
 			j++;
@@ -48,5 +61,3 @@ int	check_all_numeric(int argn, char *argv[])
 	}
 	return (TRUE);
 }
-
-

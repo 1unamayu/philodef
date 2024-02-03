@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 16:27:01 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/01/28 21:48:22 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:19:36 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,22 @@ long long	ft_current_time(void)
 
 	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
+
+void	ft_usleep(long long time)
+{
+	long long	start;
+
+	start = ft_current_time();
+	while ((ft_current_time() - start) < time)
+		usleep(300);
+}
+
+// eliminar esta funcion
+long long	ft_timestamp(long long time)
+{
+	long long		now;
+
+	now = ft_current_time();
+	return (now - time);
 }

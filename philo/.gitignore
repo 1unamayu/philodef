@@ -1,2 +1,7 @@
 .objs/
 prueba.c
+alientest_philosopher/
+.vscode/
+../.vscode/
+test2.txt
+philo

@@ -6,7 +6,7 @@
 #    By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/28 10:14:23 by xamayuel          #+#    #+#              #
-#    Updated: 2024/01/29 09:12:48 by xamayuel         ###   ########.fr        #
+#    Updated: 2024/02/03 22:25:11 by xamayuel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,15 +28,17 @@ DARK_BLUE		=   \033[38;5;57m
 # SOURCE FILES
 SRC =	$(SRC_DIR)/philo.c \
 		$(SRC_DIR)/ft_atoi.c \
-		$(SRC_DIR)/showerror.c \
-		$(SRC_DIR)/time.c \
-		$(SRC_DIR)/report.c \
-		$(SRC_DIR)/checks.c \
-		$(SRC_DIR)/free.c\
-		$(SRC_DIR)/game.c\
-		$(SRC_DIR)/doctor.c
-		
+		$(SRC_DIR)/timestamps.c \
+		$(SRC_DIR)/errors_show.c \
+		$(SRC_DIR)/game_data_checks.c \
+		$(SRC_DIR)/game_data.c \
+		$(SRC_DIR)/game_free.c \
+		$(SRC_DIR)/game_start.c \
+		$(SRC_DIR)/npc_doctor.c \
+		$(SRC_DIR)/npc_life.c \
+		$(SRC_DIR)/npc_print.c \
 
+		
 SRC2 =	$(SRC_DIR)/philo.c \
 		$(SRC_DIR)/ft_atoi.c \
 		$(SRC_DIR)/showerror.c \
@@ -51,7 +53,7 @@ OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 # COMPILER
 CC = gcc
 HEAD = -I./includes 
-CFLAGS = #-Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=thread
 LFLAGS = -lpthread
 RM = /bin/rm -rf
 
@@ -60,7 +62,8 @@ all: $(NAME)
 
 $(NAME): $(OBJ) 
 		$(CC) $(OBJ) $(HEAD) $(CFLAGS) $(LFLAGS) -o $(NAME)
-		
+		sleep .5
+		clear
 		@echo "$(PINK)╔═══════════════════════════════════════╗"
 		@echo "$(PINK)║ ${RESET}🙈🙉🙊 ${BLUE} PHILOSOPHER COMPLETE ${RESET}🙈🙉🙊   $(PINK)║"
 		@echo "$(PINK)╚═══════════════════════════════════════╝ $(RESET)"

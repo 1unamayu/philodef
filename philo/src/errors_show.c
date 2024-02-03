@@ -1,22 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   description.c                                      :+:      :+:    :+:   */
+/*   errors_show.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:22:19 by xamayuel          #+#    #+#             */
-/*   Updated: 2022/10/17 23:22:35 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/02/03 23:30:20 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philosophers.h>
 
-/**
- * @brief Show at stderr the program required arguments.
- * 
- */
-void	show_error_arguments(void)
+static int	ft_error(char *string);
+static void	ft_show_error_arguments(void);
+
+void	ft_report_error(int type)
+{
+	ft_error(RED);
+	if (type == ERR_N_ARGS)
+		ft_error("Please introduce a correct number of arguments (4/5)\n");
+	if (type == ERR_NO_NUMBERS)
+		ft_error("Please introduce only numbers as arguments\n");
+	if (type == ERR_ZERO)
+		ft_error("Zeros are not allowed in any field\n");
+	if (type == ERR_MALLOC)
+		ft_error(RED"Error allocating memory!!\n");
+	if (type == ERR_MUTEX)
+		ft_error("Mutex error!!\n");
+	if (type == ERR_NONUMERIC)
+		ft_error("Argument not numeric found!!\n");
+	if (type == ERR_MINIMUM)
+		ft_error("Time argument must be bigger than 60ms!!\n");
+	ft_error(WHITE);
+	if (type > ERR_MUTEX)
+		ft_show_error_arguments();
+	exit(0);
+}
+
+static int	ft_error(char *string)
+{
+	while (*string)
+		write(2, string++, 1);
+	return (FALSE);
+}
+
+static void	ft_show_error_arguments(void)
 {
 	ft_error("\n"WHITE);
 	ft_error("Following arguments must be defined:\n");

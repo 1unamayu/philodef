@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   npc_print.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 21:30:02 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/02/03 22:09:03 by xamayuel         ###   ########.fr       */
+/*   Created: 2024/01/29 12:30:10 by xamayuel          #+#    #+#             */
+/*   Updated: 2024/02/03 23:11:27 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philosophers.h>
 
-int	main(int argn, char **argv)
+void	ft_print(t_npc *philo, char *msg)
 {
-	t_game		game;
+	long long	now;
 
-	ft_valid_input(argn, argv);
-	ft_set_game(argv, argn, &game);
-	ft_start_game(&game);
-	ft_free_game(&game);
-	return (0);
+	pthread_mutex_lock(&philo->env->m_screen);
+	now = ft_current_time() - philo->env->t_start;
+	if (!ft_check_changes_philo(philo))
+		printf("%-8.6lld  %d %s\n", now, philo->id_npc, msg);
+	pthread_mutex_unlock(&philo->env->m_screen);
 }
