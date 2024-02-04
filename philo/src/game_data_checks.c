@@ -6,14 +6,36 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 11:55:52 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/02/03 23:29:06 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/02/04 13:49:14 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+ * @brief Functions for validating input arguments for the philosophers game.
+ * 
+ * This file contains functions for validating input arguments provided to 
+ * the philosophers game. It includes functions to check if the correct number 
+ * of arguments is provided, if all arguments are numeric, and if certain 
+ * conditions regarding the arguments are met.
+ * 
+ */
 
 #include "philosophers.h"
 
 static int	check_all_numeric(int argn, char *argv[]);
 
+/**
+ * @brief Validates the input arguments provided to the philosophers game.
+ * 
+ * This function validates the input arguments provided. 
+ * It checks if the correct number of arguments is provided, if all arguments 
+ * are numeric, and if certain conditions regarding the arguments 
+ * are met. It reports an error and exits if any validation fails.
+ * 
+ * @param argn Number of arguments passed to the program.
+ * @param argv Array of strings containing the arguments passed to the program.
+ * @return Returns TRUE if the input arguments are valid.
+ */
 int	ft_valid_input(int argn, char **argv)
 {
 	int	cont;
@@ -38,6 +60,17 @@ int	ft_valid_input(int argn, char **argv)
 	return (TRUE);
 }
 
+/**
+ * @brief Checks if all arguments are numeric.
+ * 
+ * This function checks if all arguments provided to the program are numeric. 
+ * It iterates through each argument and each character within the argument 
+ * to ensure that only numeric characters are present.
+ * 
+ * @param argn Number of arguments passed to the program.
+ * @param argv Array of strings containing the arguments passed to the program.
+ * @return Returns TRUE if all arguments are numeric, otherwise returns FALSE.
+ */
 static int	check_all_numeric(int argn, char *argv[])
 {
 	int	i;
