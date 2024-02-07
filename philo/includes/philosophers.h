@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 21:20:46 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/02/04 14:12:59 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:45:21 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int			ft_start_game(t_game *game);
 void		*ft_doctor_health(void *args);
 //npc_life
 void		*ft_npc_life(void *args);
-int			ft_check_changes_philo(t_npc *philo);
+int			ft_check_death_philo(t_npc *philo);
 //npc_print
 void		ft_print(t_npc *philo, char *msg);
 //timestamps

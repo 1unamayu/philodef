@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:30:10 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/02/04 13:50:51 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:45:29 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_print(t_npc *npc, char *msg)
 
 	pthread_mutex_lock(&npc->env->m_screen);
 	now = ft_current_time() - npc->env->t_start;
-	if (!ft_check_changes_philo(npc))
+	if (!ft_check_death_philo(npc))
 		printf("%-8.6lld  %d %s\n", now, npc->id_npc, msg);
 	pthread_mutex_unlock(&npc->env->m_screen);
 }

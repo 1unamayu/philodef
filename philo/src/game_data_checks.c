@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 11:55:52 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/02/04 13:49:14 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:16:11 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ int	ft_valid_input(int argn, char **argv)
 	{
 		if (ft_atoi(argv[cont++]) == 0)
 			ft_report_error(ERR_ZERO);
-		if (cont > 1 && ft_atoi(argv[cont++]) <= 60)
-			ft_report_error(ERR_MINIMUM);
 	}
 	if (argn == 6)
 	{

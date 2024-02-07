@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:21:55 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/02/04 14:15:38 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/02/07 19:45:09 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	*ft_npc_life(void *args)
 		usleep(15000);
 	pthread_mutex_lock(&npc->env->m_main);
 	pthread_mutex_unlock(&npc->env->m_main);
-	while (!ft_check_changes_philo(npc))
+	while (!ft_check_death_philo(npc))
 	{
 		if (!ft_npc_eats(npc))
 		{
@@ -110,7 +110,7 @@ static int	ft_npc_eats(t_npc *npc)
  * @return Returns 1 if there are changes that require the philosopher to 
  * stop its life cycle, otherwise returns 0.
  */
-int	ft_check_changes_philo(t_npc *npc)
+int	ft_check_death_philo(t_npc *npc)
 {
 	pthread_mutex_lock(&npc->env->m_readwrite);
 	if (npc->env->death)
