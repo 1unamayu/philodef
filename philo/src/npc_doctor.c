@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 09:10:08 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/02/04 13:46:56 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:59:28 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ void	*ft_doctor_health(void *args)
 				return (NULL);
 			}
 		}
-		if (game->env.number_npc_meals && \
-				(game->env.number_full == game->num_npcs))
-		{
-			ft_endgame(game);
-			return (NULL);
-		}
-		usleep(10);
+		pthread_mutex_lock(&game->env.m_main);
+        if (game->env.number_full == game->num_npcs) {
+            ft_endgame(game);
+            pthread_mutex_unlock(&game->env.m_main);
+            return (NULL);
+        }
+        pthread_mutex_unlock(&game->env.m_main);
 	}
 	return (NULL);
 }

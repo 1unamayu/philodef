@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 12:21:55 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/02/07 19:45:09 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:57:05 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ void	*ft_npc_life(void *args)
 		{
 			if (npc->env->number_npc_meals == npc->meals_eaten)
 			{
-				npc->env->number_full++;
+				pthread_mutex_lock(&npc->env->m_main);
+                npc->env->number_full++;
+                pthread_mutex_unlock(&npc->env->m_main);
 				return (NULL);
 			}
 		}
