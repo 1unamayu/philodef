@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:24:32 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/02/04 14:13:28 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/02/10 12:15:44 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void	ft_set_mutex(t_game *game)
 	pthread_mutex_init(&game->env.m_screen, NULL);
 	pthread_mutex_init(&game->env.m_main, NULL);
 	pthread_mutex_init(&game->env.m_readwrite, NULL);
-	game->forks = malloc(sizeof(pthread_mutex_t) * game->num_npcs);
+	game->forks = ft_calloc(game->num_npcs, sizeof(pthread_mutex_t));
 	if (!game->forks)
 		ft_report_error(ERR_MALLOC);
 	i = -1;
@@ -112,7 +112,7 @@ static void	ft_set_npcs(t_game *game)
 {
 	int	i;
 
-	game->npcs = malloc(sizeof(t_npc) * game->num_npcs);
+	game->npcs = ft_calloc(game->num_npcs, sizeof(t_npc));
 	if (!game->npcs)
 		ft_report_error(ERR_MALLOC);
 	i = -1;

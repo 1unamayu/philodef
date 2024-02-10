@@ -6,7 +6,7 @@
 #    By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/28 10:14:23 by xamayuel          #+#    #+#              #
-#    Updated: 2024/02/09 20:43:37 by xamayuel         ###   ########.fr        #
+#    Updated: 2024/02/10 11:55:45 by xamayuel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ DARK_BLUE		=   \033[38;5;57m
 # SOURCE FILES
 SRC =	$(SRC_DIR)/philo.c \
 		$(SRC_DIR)/ft_atoi.c \
+		$(SRC_DIR)/ft_calloc.c \
 		$(SRC_DIR)/timestamps.c \
 		$(SRC_DIR)/errors_show.c \
 		$(SRC_DIR)/game_data_checks.c \

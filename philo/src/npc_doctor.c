@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 09:10:08 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/02/09 20:59:28 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/02/10 11:47:56 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 static void	ft_endgame(t_game *game);
 static int	ft_check_death(t_npc *npc);
+static void	ft_check_all_full(t_game *game);
 
 /**
  * @brief Monitors the health of philosophers.
@@ -55,13 +56,8 @@ void	*ft_doctor_health(void *args)
 				return (NULL);
 			}
 		}
-		pthread_mutex_lock(&game->env.m_main);
-        if (game->env.number_full == game->num_npcs) {
-            ft_endgame(game);
-            pthread_mutex_unlock(&game->env.m_main);
-            return (NULL);
-        }
-        pthread_mutex_unlock(&game->env.m_main);
+		ft_check_all_full(game);
+		usleep(10);
 	}
 	return (NULL);
 }
@@ -106,4 +102,25 @@ static void	ft_endgame(t_game *game)
 	pthread_mutex_lock(&game->env.m_readwrite);
 	game->env.death = 1;
 	pthread_mutex_unlock(&game->env.m_readwrite);
+}
+
+/**
+ * @brief Checks if all npc in the game are full. 
+ * 
+ * @param game Pointer to the game structure containing the game environment.
+ * 
+ * @return void
+ * 
+ * (cambiar exit 0 por return NULL ??)
+ */
+static void	ft_check_all_full(t_game *game)
+{
+	pthread_mutex_lock(&game->env.m_main);
+	if (game->env.number_full == game->num_npcs)
+	{
+		ft_endgame(game);
+		pthread_mutex_unlock(&game->env.m_main);
+		exit(0);
+	}
+	pthread_mutex_unlock(&game->env.m_main);
 }

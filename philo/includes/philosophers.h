@@ -6,7 +6,7 @@
 /*   By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 21:20:46 by xamayuel          #+#    #+#             */
-/*   Updated: 2024/02/07 19:45:21 by xamayuel         ###   ########.fr       */
+/*   Updated: 2024/02/10 12:15:24 by xamayuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ void		ft_print(t_npc *philo, char *msg);
 void		ft_usleep(long long time);
 long long	ft_timestamp(long long time);
 long long	ft_current_time(void);
-
+// calloc
+void		*ft_calloc(size_t count, size_t size);
 #endif
