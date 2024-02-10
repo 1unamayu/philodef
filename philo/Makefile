@@ -6,7 +6,7 @@
 #    By: xamayuel <xamayuel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/28 10:14:23 by xamayuel          #+#    #+#              #
-#    Updated: 2024/02/10 11:55:45 by xamayuel         ###   ########.fr        #
+#    Updated: 2024/02/10 12:30:47 by xamayuel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 # COMPILER
 CC = gcc
 HEAD = -I./includes 
-CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=thread
+CFLAGS = -Wall -Werror -Wextra -g3  -fsanitize=leak #-fsanitize=thread
 LFLAGS = -lpthread
 RM = /bin/rm -rf
 
